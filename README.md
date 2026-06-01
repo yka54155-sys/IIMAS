@@ -129,26 +129,3 @@ make -j$(nproc)
 └── lib/                        # 预编译静态库
 ```
 
-## 重构状态
-
-本项目正在进行从单体架构到分层架构的重构（详见 `REFACTORING_GUIDE.md` 和 `PROGRESS.md`）。
-
-**已完成:**
-- Repository 层完整实现 (Student / Group / SAG / User)
-- Service 层完整实现 (CRUD + 搜索)
-- 登录/登出/搜索路由已迁移到 Service 层
-- 巨石文件 `Crow_API.cpp` 拆分为 10 个功能文件
-- Token 认证中间件
-- 依赖注入初始化链
-
-**进行中:**
-- 剩余路由 (添加/删除/修改/排序) 迁移到 Service 层
-
-## 面试关联知识点
-
-启动项目时可以考虑以下考察点：
-
-- **模板与多态**: `IRepository<T>` 用虚函数实现运行时多态，为什么不用 CRTP？
-- **依赖注入**: Service 构造函数接受接口引用而非具体类，体现哪条 SOLID 原则？
-- **线程安全**: `TokenStore` 用 `std::shared_mutex`，读写锁和互斥锁的区别？
-- **分层架构**: 为什么依赖方向是 `从上到下`，基础设施层反向实现接口？
